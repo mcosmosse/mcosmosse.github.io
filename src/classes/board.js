@@ -1,0 +1,12 @@
+var canvas = document.getElementById("sidebars");
+var ctx = canvas.getContext("2d");
+ctx.canvas.width  = window.innerWidth;
+ctx.canvas.height = window.innerHeight;
+ctx.moveTo(384, 0);
+ctx.lineTo(0, 600);
+ctx.strokeStyle = "white";
+ctx.stroke();
+ctx.moveTo(1152, 0);
+ctx.lineTo(window.innerWidth, 600);
+ctx.strokeStyle = "white";
+ctx.stroke();
