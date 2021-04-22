@@ -1,55 +1,59 @@
 <html>
     <head>
-        <link rel="stylesheet" href="../src/css/board.css">
-    </head>
-
-    <body>
+        <link rel="stylesheet" href="../src/css/board.css" />
+        <title>Game</title>
+      </head>
+    
+      <body>
         <audio class="song" src="../src/assets/flowerdance.mp3"></audio>
-
-        <div class='game'>
-            <div class='keyboard'>
-                <div class="key-container">
-                    <div class="key key--s key--blue">
-                      <div class="keypress keypress--blue"></div>
-                      <span>S</span>
-                    </div>
-                    <div class="key key--d key--red">
-                      <div class="keypress keypress--red"></div>
-                      <span>D</span>
-                    </div>
-                    <div class="key key--f key--blue">
-                      <div class="keypress keypress--blue"></div>
-                      <span>F</span>
-                    </div>
-                    <div class="key key--space key--orange">
-                      <div class="keypress keypress--orange"></div>
-                      <span>Space</span>
-                    </div>
-                    <div class="key key--j key--blue">
-                      <div class="keypress keypress--blue"></div>
-                      <span>J</span>
-                    </div>
-                    <div class="key key--k key--red">
-                      <div class="keypress keypress--red"></div>
-                      <span>K</span>
-                    </div>
-                    <div class="key key--l key--blue">
-                      <div class="keypress keypress--blue"></div>
-                      <span>L</span>
-                    </div>
-                  </div>
-                <div class='track-container'></div>
-                <div class='accuracy-bar'></div>
-                <canvas id='sidebars'></canvas>
+    
+        <main>
+          <div class="game">
+            <div class="hit">
+              <div class="hit__combo"></div>
+              <div class="hit__accuracy"></div>
             </div>
-
-            <div class='game-config'>
-                <div class="menu_start">
-                    <a class="btn btn--primary btn--start" href="#">Start</a>
-                </div>
+    
+            <div class="track-container"></div>
+    
+            <div class="key-container">
+              <div class="key key--s key--black">
+                <div class="keypress keypress--black"></div>
+                <span>S</span>
+              </div>
+              <div class="key key--d key--black">
+                <div class="keypress keypress--black"></div>
+                <span>D</span>
+              </div>
+              <div class="key key--f key--black">
+                <div class="keypress keypress--black"></div>
+                <span>F</span>
+              </div>
+              <div class="key key--space key--black">
+                <div class="keypress keypress--black"></div>
+                <span></span>
+              </div>
+              <div class="key key--j key--black">
+                <div class="keypress keypress--black"></div>
+                <span>J</span>
+              </div>
+              <div class="key key--k key--black">
+                <div class="keypress keypress--black"></div>
+                <span>K</span>
+              </div>
+              <div class="key key--l key--black">
+                <div class="keypress keypress--black"></div>
+                <span>L</span>
+              </div>
             </div>
-        </div>
-    </body>
+          </div>
+    
+            <div class="menu_start">
+              <a class="btn btn--primary btn--start" href="#">Start</a>
+            </div>
+          </div>
+          </div>
+        </main>
     <script src="../src/classes/board.js"></script>
     <script src="../src/classes/score.js"></script>
     <script src="../src/classes/note.js"></script>

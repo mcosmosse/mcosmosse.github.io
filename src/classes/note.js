@@ -1,7 +1,17 @@
-
+var isHolding = {
+    s: false,
+    d: false,
+    f: false,
+    ' ': false,
+    j: false,
+    k: false,
+    l: false
+  };
+  
+  var hits = { perfect: 0, good: 0, bad: 0, miss: 0 };
   var isPlaying = false;
-  var speed = 0;
-  var animation = 'moveDown';
+  var combo = 0;
+  var maxCombo = 0;
   var startTime;
   var trackContainer;
   var tracks;
@@ -24,11 +34,11 @@
         noteElement = document.createElement('div');
         noteElement.classList.add('note');
         noteElement.classList.add('note--' + index);
-        noteElement.style.backgroundColor = key.color;
-        noteElement.style.animationName = animation;
+        noteElement.style.backgroundColor = 'white';
+        noteElement.style.animationName = 'moveDown';
         noteElement.style.animationTimingFunction = 'linear';
-        noteElement.style.animationDuration = note.duration - speed + 's';
-        noteElement.style.animationDelay = note.delay + speed + 's';
+        noteElement.style.animationDuration = note.duration + 's';
+        noteElement.style.animationDelay = note.delay + 's';
         noteElement.style.animationPlayState = 'paused';
         trackElement.appendChild(noteElement);
       });
@@ -38,17 +48,13 @@
     });
   };
   
-  var updateAnimation = function () {
-    animation = 'moveDownFade';
-    initializeNotes();
-  };
-  
   var setupStartButton = function () {
     var startButton = document.querySelector('.btn--start');
     startButton.addEventListener('click', function () {
       isPlaying = true;
       startTime = Date.now();
-      document.querySelector('.song').play();
+  
+    //!   document.querySelector('.song').play();
       document.querySelectorAll('.note').forEach(function (note) {
         note.style.animationPlayState = 'running';
       });
@@ -58,6 +64,11 @@
   var setupNoteMiss = function () {
     trackContainer.addEventListener('animationend', function (event) {
       var index = event.target.classList.item(1)[6];
+  
+      displayAccuracy('miss');
+      updateHits('miss');
+      updateCombo('miss');
+      updateMaxCombo();
       removeNoteFromTrack(event.target.parentNode, event.target);
       updateNext(index);
     });
@@ -111,14 +122,65 @@
     var nextNote = song.sheet[index].notes[nextNoteIndex];
     var perfectTime = nextNote.duration + nextNote.delay;
     var accuracy = Math.abs(timeInSecond - perfectTime);
-  
-    if (accuracy > (nextNote.duration - speed) / 4) {
+    var hitJudgement;
+
+    if (accuracy > (nextNote.duration) / 4) {
       return;
     }
   
+    hitJudgement = getHitJudgement(accuracy);
+    displayAccuracy(hitJudgement);
     showHitEffect(index);
+    updateHits(hitJudgement);
+    updateCombo(hitJudgement);
+    updateMaxCombo();
     removeNoteFromTrack(tracks[index], tracks[index].firstChild);
     updateNext(index);
+  };
+  
+  var getHitJudgement = function (accuracy) {
+    if (accuracy < 0.1) {
+      return 'perfect';
+    } else if (accuracy < 0.2) {
+      return 'good';
+    } else if (accuracy < 0.3) {
+      return 'bad';
+    } else {
+      return 'miss';
+    }
+  };
+  
+  var displayAccuracy = function (accuracy) {
+    var accuracyText = document.createElement('div');
+    document.querySelector('.hit__accuracy').remove();
+    accuracyText.classList.add('hit__accuracy');
+    accuracyText.classList.add('hit__accuracy--' + accuracy);
+    accuracyText.innerHTML = accuracy;
+    document.querySelector('.hit').appendChild(accuracyText);
+  };
+  
+  var showHitEffect = function (index) {
+    var key = document.querySelectorAll('.key')[index];
+    var hitEffect = document.createElement('div');
+    hitEffect.classList.add('key__hit');
+    key.appendChild(hitEffect);
+  };
+  
+  var updateHits = function (judgement) {
+    hits[judgement]++;
+  };
+  
+  var updateCombo = function (judgement) {
+    if (judgement === 'bad' || judgement === 'miss') {
+      combo = 0;
+      comboText.innerHTML = '';
+    } else {
+      comboText.innerHTML = ++combo;
+    }
+  };
+  
+  var updateMaxCombo = function () {
+    maxCombo = maxCombo > combo ? maxCombo : combo;
   };
   
   var removeNoteFromTrack = function (parent, child) {
@@ -132,6 +194,7 @@
   window.onload = function () {
     trackContainer = document.querySelector('.track-container');
     keypress = document.querySelectorAll('.keypress');
+    comboText = document.querySelector('.hit__combo');
   
     initializeNotes();
     setupStartButton();

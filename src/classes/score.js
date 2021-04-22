@@ -1,5 +1,4 @@
 var s = {
-    color: 'rgba(28, 121, 228, 1)',
     next: 0,
     notes: [
       { duration: 3, delay: 4.2 },
@@ -16,7 +15,6 @@ var s = {
   };
   
   var d = {
-    color: 'rgba(254, 45, 87, 1)',
     next: 0,
     notes: [
       { duration: 3, delay: 2.2 },
@@ -35,7 +33,6 @@ var s = {
   };
   
   var f = {
-    color: 'rgba(28, 121, 228, 1)',
     next: 0,
     notes: [
       { duration: 3, delay: 0.2 },
@@ -52,7 +49,6 @@ var s = {
   };
   
   var space = {
-    color: 'rgba(240, 128, 60, 1)',
     next: 0,
     notes: [
       { duration: 3, delay: 3.9 },
@@ -77,7 +73,6 @@ var s = {
   };
   
   var j = {
-    color: 'rgba(28, 121, 228, 1)',
     next: 0,
     notes: [
       { duration: 3, delay: 3.2 },
@@ -118,7 +113,6 @@ var s = {
   };
   
   var k = {
-    color: 'rgba(254, 45, 87, 1)',
     next: 0,
     notes: [
       { duration: 3, delay: 2.7 },
@@ -149,7 +143,6 @@ var s = {
   };
   
   var l = {
-    color: 'rgba(28, 121, 228, 1)',
     next: 0,
     notes: [
       { duration: 3, delay: 0.2 },
