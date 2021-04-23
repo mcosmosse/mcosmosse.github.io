@@ -37,7 +37,7 @@ var isHolding = {
         noteElement.style.backgroundColor = 'white';
         noteElement.style.animationName = 'moveDown';
         noteElement.style.animationTimingFunction = 'linear';
-        noteElement.style.animationDuration = note.duration + 's';
+        noteElement.style.animationDuration = 3 + 's';
         noteElement.style.animationDelay = note.delay + 's';
         noteElement.style.animationPlayState = 'paused';
         trackElement.appendChild(noteElement);
@@ -120,11 +120,11 @@ var isHolding = {
     var timeInSecond = (Date.now() - startTime) / 1000;
     var nextNoteIndex = song.sheet[index].next;
     var nextNote = song.sheet[index].notes[nextNoteIndex];
-    var perfectTime = nextNote.duration + nextNote.delay;
+    var perfectTime = 3 + nextNote.delay;
     var accuracy = Math.abs(timeInSecond - perfectTime);
     var hitJudgement;
 
-    if (accuracy > (nextNote.duration) / 4) {
+    if (accuracy > .75) {
       return;
     }
   
@@ -201,3 +201,5 @@ var isHolding = {
     setupKeys();
     setupNoteMiss();
   }
+
+  // 
