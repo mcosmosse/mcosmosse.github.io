@@ -54,7 +54,7 @@ var isHolding = {
       isPlaying = true;
       startTime = Date.now();
   
-    //!   document.querySelector('.song').play();
+      document.querySelector('.song').play();
       document.querySelectorAll('.note').forEach(function (note) {
         note.style.animationPlayState = 'running';
       });
